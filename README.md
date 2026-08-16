@@ -294,7 +294,7 @@ Must print `"ok": true` and exit `0`. The suite asserts journal mode, single-fil
 
 1. Keep Zone B (`references/memory_tool`) deterministic — do not reformat or second-guess its JSON
 2. Markdown remains the only source of truth for prose
-3. Run `MEMORY=skills/memory-system/scripts/memory $MEMORY selftest` before proposing changes that touch the tool or ledger
+3. Run `MEMORY=skills/memory-system/scripts/memory; $MEMORY selftest` before proposing changes that touch the tool or ledger
 4. Do not ship user rows, pre-filled DB binaries, WAL mode, or GUI/admin sidecars
 
 ---
