@@ -1,0 +1,8 @@
+{
+  "name": "happy-path-edge-tls",
+  "input": "Remember we terminate TLS at Envoy and keep app pods HTTP-only.",
+  "expected_ops": ["root", "classify", "slug", "write", "index-link", "read"],
+  "expected_class": "topic",
+  "expected_path": "user/edge-tls.md",
+  "expected_ok": true
+}

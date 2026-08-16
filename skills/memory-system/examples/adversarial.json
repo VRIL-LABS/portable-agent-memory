@@ -1,0 +1,16 @@
+{
+  "name": "reject-secret-and-traversal",
+  "cases": [
+    {
+      "input": "Remember api_key=\"sk-ant-abcdefghijklmnopqrstuvwxyz123456\"",
+      "expected_ok": false,
+      "expected_error": "secret_detected",
+      "expected_exit": 3
+    },
+    {
+      "input": "read ../etc/passwd",
+      "expected_ok": false,
+      "expected_error": "bad_path"
+    }
+  ]
+}

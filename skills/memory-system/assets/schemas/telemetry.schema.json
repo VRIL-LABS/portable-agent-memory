@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "memory-system/telemetry.schema.json",
+  "title": "memory-system telemetry",
+  "type": "object",
+  "required": ["ok", "skill", "schema", "op"],
+  "properties": {
+    "ok": { "type": "boolean" },
+    "skill": { "const": "memory-system" },
+    "schema": { "const": "memory-system/v1" },
+    "op": { "type": "string" },
+    "scope": { "enum": ["user", "team"] },
+    "path": { "type": "string" },
+    "sha256": { "type": "string" },
+    "warnings": { "type": "array" },
+    "error": { "type": "object" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "next": { "type": "array", "items": { "type": "string" } },
+    "latency_ms": { "type": "integer" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,6 @@
+{
+  "name": "exists-then-read-edit",
+  "trigger": {"ok": false, "error": {"code": "exists"}},
+  "recovery": ["read", "edit-or-confirmed-overwrite", "read-verify-sha256"],
+  "forbidden": ["bash-redirect", "interpret-as-success", "skip-read"]
+}

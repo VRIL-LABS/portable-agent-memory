@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+"""Thin wrapper. Do not rewrite. Exec the bundled memory_tool."""
+from __future__ import annotations
+
+import runpy
+import sys
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent.parent
+PKG_PARENT = SKILL_ROOT / "references"
+sys.path.insert(0, str(PKG_PARENT))
+sys.argv[0] = "memory_tool"
+runpy.run_module("memory_tool", run_name="__main__")
