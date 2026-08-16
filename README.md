@@ -154,7 +154,7 @@ Set the path to the memory tool once. From this repo root use `skills/memory-sys
 MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
 
 # from a real project root (or pass --cwd / --root)
-$MEMORY --cwd . init
+"$MEMORY" --cwd . init
 
 "$MEMORY" --cwd . write user/edge-tls.md \
   --content "# Edge TLS
@@ -162,9 +162,9 @@ $MEMORY --cwd . init
 Terminate TLS at Envoy.
 "
 
-$MEMORY --cwd . search "Envoy TLS"
+"$MEMORY" --cwd . search "Envoy TLS"
 
-$MEMORY selftest
+"$MEMORY" selftest
 # → "ok": true, exit 0
 ```
 
@@ -177,21 +177,21 @@ MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
 
 "$MEMORY" --cwd . root
 "$MEMORY" --cwd . glob "user/**/*.md"
-$MEMORY --cwd . read user/MEMORY.md
-$MEMORY --cwd . search "edge proxy"
+"$MEMORY" --cwd . read user/MEMORY.md
+"$MEMORY" --cwd . search "edge proxy"
 
-$MEMORY classify --text "$PAYLOAD" --hint "$INTENT" --title "$TITLE"
-$MEMORY slug "$TITLE"
+"$MEMORY" classify --text "$PAYLOAD" --hint "$INTENT" --title "$TITLE"
+"$MEMORY" slug "$TITLE"
 
-$MEMORY --cwd . write user/<slug>.md --content-file "$TMP"
-$MEMORY --cwd . index-link --scope user --slug <slug> --filename <slug>.md --summary "$ONE_LINE"
-$MEMORY --cwd . read user/<slug>.md   # re-read is proof
+"$MEMORY" --cwd . write user/<slug>.md --content-file "$TMP"
+"$MEMORY" --cwd . index-link --scope user --slug <slug> --filename <slug>.md --summary "$ONE_LINE"
+"$MEMORY" --cwd . read user/<slug>.md   # re-read is proof
 
 # irreversible delete — confirm path must equal path
-$MEMORY --cwd . forget user/<slug>.md --confirm user/<slug>.md
+"$MEMORY" --cwd . forget user/<slug>.md --confirm user/<slug>.md
 
 # ledger drift? rebuild from markdown
-$MEMORY --cwd . reindex
+"$MEMORY" --cwd . reindex
 ```
 
 ---
