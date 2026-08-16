@@ -55,6 +55,8 @@ def init_db(project_root: Path) -> dict[str, Any]:
             warnings.append({"code": "sqlite_vec_unavailable", "message": str(exc)})
         if vec:
             conn.commit()
+        else:
+            conn.rollback()
         return {
             "db": str(path),
             "created": not existed,
@@ -89,6 +91,14 @@ def assert_single_file(path: Path) -> None:
 
 
 def vec_available(conn: sqlite3.Connection | None = None) -> bool:
+    """Return whether sqlite-vec is usable.
+
+    With `conn=None`, this only checks that the `sqlite_vec` package is
+    importable — it does NOT verify the extension actually loads (e.g. on an
+    architecture mismatch or missing shared library). Callers that need a
+    definitive answer must pass a live connection so the extension is loaded
+    and `ensure_vec_table` is attempted.
+    """
     try:
         import sqlite_vec  # type: ignore  # noqa: F401
     except Exception:
@@ -276,6 +286,8 @@ def reindex(project_root: Path, store: Path) -> dict[str, Any]:
             vec_warnings.append({"code": "sqlite_vec_unavailable", "message": str(exc)})
         if vec:
             conn.commit()
+        else:
+            conn.rollback()
         return {
             "rebuilt": rebuilt,
             "skipped_secrets": skipped_secrets,

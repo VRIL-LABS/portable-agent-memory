@@ -243,7 +243,8 @@ def cmd_edit(args: argparse.Namespace, started: float) -> int:
             EXIT_FAIL,
         )
     ledger.upsert_entry_from_path(project, rec["path"], verify)
-    return _emit(_base("edit", started, ok=True, file=rec, replacements=original.count(args.old) if args.all else 1), EXIT_OK)
+    replacements = original.count(args.old) if args.all else 1
+    return _emit(_base("edit", started, ok=True, file=rec, replacements=replacements), EXIT_OK)
 
 
 def cmd_validate(args: argparse.Namespace, started: float) -> int:
