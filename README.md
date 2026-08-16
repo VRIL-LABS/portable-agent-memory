@@ -151,20 +151,20 @@ memory-system/
 Set the path to the memory tool once. From this repo root use `skills/memory-system/scripts/memory`; after installing the skill use your installed path (e.g. `.agents/skills/memory-system/scripts/memory`).
 
 ```bash
-MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
+MEMORY="skills/memory-system/scripts/memory"   # change if installed elsewhere
 
 # from a real project root (or pass --cwd / --root)
-$MEMORY --cwd . init
+"$MEMORY" --cwd . init
 
-$MEMORY --cwd . write user/edge-tls.md \
+"$MEMORY" --cwd . write user/edge-tls.md \
   --content "# Edge TLS
 
 Terminate TLS at Envoy.
 "
 
-$MEMORY --cwd . search "Envoy TLS"
+"$MEMORY" --cwd . search "Envoy TLS"
 
-$MEMORY selftest
+"$MEMORY" selftest
 # → "ok": true, exit 0
 ```
 
@@ -175,23 +175,23 @@ The agent loads the skill when you say *remember*, *forget*, *persist a preferen
 ```bash
 MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
 
-$MEMORY --cwd . root
-$MEMORY --cwd . glob "user/**/*.md"
-$MEMORY --cwd . read user/MEMORY.md
-$MEMORY --cwd . search "edge proxy"
+"$MEMORY" --cwd . root
+"$MEMORY" --cwd . glob "user/**/*.md"
+"$MEMORY" --cwd . read user/MEMORY.md
+"$MEMORY" --cwd . search "edge proxy"
 
-$MEMORY classify --text "$PAYLOAD" --hint "$INTENT" --title "$TITLE"
-$MEMORY slug "$TITLE"
+"$MEMORY" classify --text "$PAYLOAD" --hint "$INTENT" --title "$TITLE"
+"$MEMORY" slug "$TITLE"
 
-$MEMORY --cwd . write user/<slug>.md --content-file "$TMP"
-$MEMORY --cwd . index-link --scope user --slug <slug> --filename <slug>.md --summary "$ONE_LINE"
-$MEMORY --cwd . read user/<slug>.md   # re-read is proof
+"$MEMORY" --cwd . write user/<slug>.md --content-file "$TMP"
+"$MEMORY" --cwd . index-link --scope user --slug <slug> --filename <slug>.md --summary "$ONE_LINE"
+"$MEMORY" --cwd . read user/<slug>.md   # re-read is proof
 
 # irreversible delete — confirm path must equal path
-$MEMORY --cwd . forget user/<slug>.md --confirm user/<slug>.md
+"$MEMORY" --cwd . forget user/<slug>.md --confirm user/<slug>.md
 
 # ledger drift? rebuild from markdown
-$MEMORY --cwd . reindex
+"$MEMORY" --cwd . reindex
 ```
 
 ---
@@ -271,7 +271,7 @@ Development guidance and the SQLite stack rationale live in [`AGENTS.md`](AGENTS
 
 ```bash
 MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
-$MEMORY selftest
+"$MEMORY" selftest
 ```
 
 Must print `"ok": true` and exit `0`. The suite asserts journal mode, single-file DB (no `-wal`/`-shm`), FTS search, dual-write checksums, secret rejection, and forget purge semantics.
@@ -294,7 +294,7 @@ Must print `"ok": true` and exit `0`. The suite asserts journal mode, single-fil
 
 1. Keep Zone B (`references/memory_tool`) deterministic — do not reformat or second-guess its JSON
 2. Markdown remains the only source of truth for prose
-3. Run `MEMORY=skills/memory-system/scripts/memory; $MEMORY selftest` before proposing changes that touch the tool or ledger
+3. Run `MEMORY=skills/memory-system/scripts/memory; "$MEMORY" selftest` before proposing changes that touch the tool or ledger
 4. Do not ship user rows, pre-filled DB binaries, WAL mode, or GUI/admin sidecars
 
 ---
