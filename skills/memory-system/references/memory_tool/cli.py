@@ -387,7 +387,15 @@ def cmd_reindex(args: argparse.Namespace, started: float) -> int:
 def cmd_forget(args: argparse.Namespace, started: float) -> int:
     project = _root_from_args(args)
     store = core.require_store(project)
-    if args.confirm != args.path:
+    try:
+        path_norm = core.sanitize_rel(args.path).as_posix()
+        confirm_norm = core.sanitize_rel(args.confirm).as_posix()
+    except core.MemoryError as exc:
+        return _emit(
+            _base("forget", started, ok=False, error={"code": exc.code, "message": exc.message, **exc.extra}),
+            EXIT_USAGE,
+        )
+    if confirm_norm != path_norm:
         return _emit(
             _base(
                 "forget",

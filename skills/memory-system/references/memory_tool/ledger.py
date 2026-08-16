@@ -48,6 +48,8 @@ def init_db(project_root: Path) -> dict[str, Any]:
         conn.commit()
         assert_single_file(path)
         vec = vec_available(conn)
+        if vec:
+            conn.commit()
         return {
             "db": str(path),
             "created": not existed,
