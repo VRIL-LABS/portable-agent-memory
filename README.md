@@ -156,7 +156,7 @@ MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
 # from a real project root (or pass --cwd / --root)
 $MEMORY --cwd . init
 
-$MEMORY --cwd . write user/edge-tls.md \
+"$MEMORY" --cwd . write user/edge-tls.md \
   --content "# Edge TLS
 
 Terminate TLS at Envoy.
@@ -175,8 +175,8 @@ The agent loads the skill when you say *remember*, *forget*, *persist a preferen
 ```bash
 MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
 
-$MEMORY --cwd . root
-$MEMORY --cwd . glob "user/**/*.md"
+"$MEMORY" --cwd . root
+"$MEMORY" --cwd . glob "user/**/*.md"
 $MEMORY --cwd . read user/MEMORY.md
 $MEMORY --cwd . search "edge proxy"
 
@@ -271,7 +271,7 @@ Development guidance and the SQLite stack rationale live in [`AGENTS.md`](AGENTS
 
 ```bash
 MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
-$MEMORY selftest
+"$MEMORY" selftest
 ```
 
 Must print `"ok": true` and exit `0`. The suite asserts journal mode, single-file DB (no `-wal`/`-shm`), FTS search, dual-write checksums, secret rejection, and forget purge semantics.
@@ -294,7 +294,7 @@ Must print `"ok": true` and exit `0`. The suite asserts journal mode, single-fil
 
 1. Keep Zone B (`references/memory_tool`) deterministic — do not reformat or second-guess its JSON
 2. Markdown remains the only source of truth for prose
-3. Run `MEMORY=skills/memory-system/scripts/memory; $MEMORY selftest` before proposing changes that touch the tool or ledger
+3. Run `MEMORY=skills/memory-system/scripts/memory; "$MEMORY" selftest` before proposing changes that touch the tool or ledger
 4. Do not ship user rows, pre-filled DB binaries, WAL mode, or GUI/admin sidecars
 
 ---
