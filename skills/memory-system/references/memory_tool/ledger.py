@@ -29,11 +29,11 @@ def _connect(path: Path) -> sqlite3.Connection:
     conn = sqlite3.connect(str(path))
     conn.row_factory = sqlite3.Row
     mode = conn.execute("PRAGMA journal_mode = DELETE").fetchone()[0]
-    if str(mode).lower() == "wal":
+    if str(mode).lower() != "delete":
         conn.close()
         raise core.MemoryError(
             "wal_forbidden",
-            "journal_mode=wal would create -wal/-shm sidecars. DELETE required.",
+            "journal_mode=%s would create sidecar files. DELETE required." % mode,
             db=str(path),
         )
     return conn
@@ -133,7 +133,7 @@ def upsert_entry(conn: sqlite3.Connection, rel: str, text: str) -> None:
         "VALUES (?,?,?,?,?,?,?) ON CONFLICT(path) DO UPDATE SET scope=excluded.scope, "
         "slug=excluded.slug, class=excluded.class, body=excluded.body, "
         "sha256=excluded.sha256, updated_at=excluded.updated_at",
-        (rel.split("/")[0] if "/" in rel else "user", slug, _kind_for(rel, name), rel, text, sha, now),
+        (scope, slug, _kind_for(rel, name), rel, text, sha, now),
     )
     conn.execute(
         "INSERT INTO events (op, path, sha256, created_at) VALUES (?,?,?,?)",
@@ -229,12 +229,13 @@ def reindex(project_root: Path, store: Path) -> dict[str, Any]:
         for f in core.glob_store(store, "**/*.md"):
             rel = f.relative_to(store.resolve()).as_posix()
             text = core.read_text(f)
-            if core.scan_secrets(text):
+            hits = core.scan_secrets(text)
+            if hits:
                 skipped_secrets.append(rel)
                 now = core.utc_now()
                 conn.executemany(
                     "INSERT INTO secrets_hits (path, rule, created_at) VALUES (?,?,?)",
-                    [(rel, h["rule"], now) for h in core.scan_secrets(text)],
+                    [(rel, h["rule"], now) for h in hits],
                 )
                 continue
             upsert_entry(conn, rel, text)

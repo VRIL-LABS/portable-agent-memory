@@ -7,7 +7,7 @@
   "properties": {
     "ok": { "type": "boolean" },
     "skill": { "const": "memory-system" },
-    "schema": { "const": "memory-system/v1" },
+    "schema": { "const": "memory-system/v1.1" },
     "op": { "type": "string" },
     "scope": { "enum": ["user", "team"] },
     "path": { "type": "string" },

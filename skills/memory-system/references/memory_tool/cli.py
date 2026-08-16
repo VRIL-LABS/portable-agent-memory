@@ -211,7 +211,7 @@ def cmd_write(args: argparse.Namespace, started: float) -> int:
             file=rec,
             warnings=warnings,
         ),
-        EXIT_OK if not warnings else EXIT_FAIL,
+        EXIT_OK,
     )
 
 
@@ -361,7 +361,12 @@ def cmd_search(args: argparse.Namespace, started: float) -> int:
     try:
         result = ledger.search(project, args.query, limit=args.limit)
     except core.MemoryError as exc:
-        code = EXIT_USAGE if exc.code == "bad_query" else EXIT_NOT_FOUND
+        if exc.code == "bad_query":
+            code = EXIT_USAGE
+        elif exc.code == "db_missing":
+            code = EXIT_NOT_FOUND
+        else:
+            code = EXIT_FAIL
         return _emit(
             _base("search", started, ok=False, error={"code": exc.code, "message": exc.message, **exc.extra}),
             code,

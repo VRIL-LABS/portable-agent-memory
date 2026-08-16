@@ -314,7 +314,7 @@ def validate_store(store: Path) -> dict[str, Any]:
         for v in validate_index(idx):
             v["scope"] = scope
             violations.append(v)
-        for f in glob_store(scope_dir if False else store, f"{scope}/**/*.md"):
+        for f in glob_store(store, f"{scope}/**/*.md"):
             hits = scan_secrets(read_text(f))
             if hits:
                 violations.append(
