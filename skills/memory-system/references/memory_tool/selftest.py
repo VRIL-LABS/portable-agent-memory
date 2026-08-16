@@ -70,10 +70,15 @@ def run_selftest() -> dict:
             any(r.get("path") == "user/architecture.md" for r in data.get("results", [])),
         )
         code, data = _run(["--root", str(root), "search", '"; DROP TABLE entries; --'])
+        match = data.get("match", "")
         check(
             "search_injection_safe",
-            code == 0 and data.get("count") == 0 and "DROP" in data.get("match", ""),
-            str(data.get("match")),
+            code == 0
+            and data.get("count") == 0
+            and "DROP" in match
+            and ";" not in match
+            and "--" not in match,
+            str(match),
         )
         code, data = _run(["--root", str(root), "search", '"; --'])
         check("search_bad_query", data.get("ok") is False and data.get("error", {}).get("code") == "bad_query")

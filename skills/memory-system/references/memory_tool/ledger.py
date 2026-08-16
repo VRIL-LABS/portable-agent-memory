@@ -56,6 +56,9 @@ def init_db(project_root: Path) -> dict[str, Any]:
         if vec:
             conn.commit()
         else:
+            # Only discards any partial vec_index DDL left by a failed
+            # vec_available/ensure_vec_table attempt; the schema DDL above
+            # was already committed and is unaffected.
             conn.rollback()
         return {
             "db": str(path),
@@ -100,7 +103,7 @@ def vec_available(conn: sqlite3.Connection | None = None) -> bool:
     and `ensure_vec_table` is attempted.
     """
     try:
-        import sqlite_vec  # type: ignore  # noqa: F401
+        import sqlite_vec  # type: ignore
     except Exception:
         return False
     if conn is not None:
@@ -287,6 +290,9 @@ def reindex(project_root: Path, store: Path) -> dict[str, Any]:
         if vec:
             conn.commit()
         else:
+            # Only discards any partial vec_index DDL left by a failed
+            # vec_available/ensure_vec_table attempt; the reindex data above
+            # was already committed and is unaffected.
             conn.rollback()
         return {
             "rebuilt": rebuilt,
