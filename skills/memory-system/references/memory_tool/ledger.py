@@ -247,11 +247,14 @@ def reindex(project_root: Path, store: Path) -> dict[str, Any]:
             ("reindex", "", "", core.utc_now()),
         )
         conn.commit()
+        vec = vec_available(conn)
+        if vec:
+            conn.commit()
         return {
             "rebuilt": rebuilt,
             "skipped_secrets": skipped_secrets,
             "db": str(path),
-            "sqlite_vec": vec_available(conn),
+            "sqlite_vec": vec,
         }
     finally:
         conn.close()

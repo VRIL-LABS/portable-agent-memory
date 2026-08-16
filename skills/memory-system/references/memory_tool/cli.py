@@ -396,6 +396,9 @@ def cmd_forget(args: argparse.Namespace, started: float) -> int:
             EXIT_USAGE,
         )
     if confirm_norm != path_norm:
+        # confirm_mismatch is a deliberate safety check, not a malformed
+        # invocation, but protocol.md documents this case as exiting 2
+        # (EXIT_USAGE) — keep the value stable for callers relying on it.
         return _emit(
             _base(
                 "forget",
