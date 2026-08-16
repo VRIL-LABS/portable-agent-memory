@@ -301,7 +301,7 @@ Must print `"ok": true` and exit `0`. The suite asserts journal mode, single-fil
 
 ## License
 
-[MIT](LICENSE) — Copyright (c) 2026 Development Division.
+[MIT](LICENSE)
 
 ---
 
