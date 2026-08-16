@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 280" fill="none" role="img" aria-label="Portable Agent Memory — project-local skill with markdown truth and SQLite FTS5 ledger">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070B12"/>
+      <stop offset="45%" stop-color="#0B1220"/>
+      <stop offset="100%" stop-color="#0A1628"/>
+    </linearGradient>
+    <linearGradient id="aurora" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D9C0" stop-opacity="0"/>
+      <stop offset="35%" stop-color="#00D9C0" stop-opacity="0.35"/>
+      <stop offset="55%" stop-color="#5B8CFF" stop-opacity="0.45"/>
+      <stop offset="75%" stop-color="#9B5EFF" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#9B5EFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#122033"/>
+      <stop offset="100%" stop-color="#0C1524"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D9C0"/>
+      <stop offset="50%" stop-color="#5B8CFF"/>
+      <stop offset="100%" stop-color="#9B5EFF"/>
+    </linearGradient>
+    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D9C0" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00D9C0" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#5B8CFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="textShine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E8EDF5"/>
+      <stop offset="40%" stop-color="#00D9C0"/>
+      <stop offset="70%" stop-color="#9B8CFF"/>
+      <stop offset="100%" stop-color="#E8EDF5"/>
+      <animate attributeName="x1" values="-100%;100%;-100%" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="0%;200%;0%" dur="8s" repeatCount="indefinite"/>
+    </linearGradient>
+    <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D9C0" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#5B8CFF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#5B8CFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="tinyGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="0.9" fill="#6272A4" opacity="0.28"/>
+    </pattern>
+    <clipPath id="frame">
+      <rect width="960" height="280" rx="22"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- Base -->
+    <rect width="960" height="280" fill="url(#bgGrad)"/>
+    <rect width="960" height="280" fill="url(#dotGrid)" opacity="0.55"/>
+
+    <!-- Soft ambient orbs -->
+    <circle cx="160" cy="70" r="90" fill="url(#orbGlow)" opacity="0.55">
+      <animate attributeName="opacity" values="0.35;0.7;0.35" dur="5.5s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="150;175;150" dur="11s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="820" cy="210" r="110" fill="url(#orbGlow)" opacity="0.4">
+      <animate attributeName="opacity" values="0.25;0.55;0.25" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="200;220;200" dur="9s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Aurora band -->
+    <rect x="-120" y="0" width="420" height="280" fill="url(#aurora)" opacity="0.55">
+      <animateTransform attributeName="transform" type="translate" values="0 0; 780 0; 0 0" dur="14s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Horizontal scan -->
+    <rect x="0" y="40" width="960" height="2" fill="url(#scanGrad)" opacity="0.7">
+      <animate attributeName="y" values="18;262;18" dur="6.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.25;0.85;0.25" dur="6.5s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Memory core mark (left) -->
+    <g transform="translate(78, 78)" filter="url(#softGlow)">
+      <!-- Outer ring -->
+      <circle cx="62" cy="62" r="58" fill="none" stroke="#6272A4" stroke-opacity="0.35" stroke-width="1.2"/>
+      <circle cx="62" cy="62" r="58" fill="none" stroke="url(#coreGrad)" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="8 18">
+        <animateTransform attributeName="transform" type="rotate" from="0 62 62" to="360 62 62" dur="18s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="62" cy="62" r="46" fill="none" stroke="#5B8CFF" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 10">
+        <animateTransform attributeName="transform" type="rotate" from="360 62 62" to="0 62 62" dur="12s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Hex memory cell -->
+      <path d="M62 28 L92 45 L92 79 L62 96 L32 79 L32 45 Z" fill="url(#chipGrad)" stroke="url(#coreGrad)" stroke-width="1.6"/>
+      <path d="M62 40 L82 51 L82 73 L62 84 L42 73 L42 51 Z" fill="none" stroke="#00D9C0" stroke-opacity="0.55" stroke-width="1">
+        <animate attributeName="stroke-opacity" values="0.3;0.85;0.3" dur="3.2s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Neural nodes -->
+      <circle cx="62" cy="62" r="5" fill="#00D9C0" filter="url(#tinyGlow)">
+        <animate attributeName="r" values="4;6.5;4" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="48" cy="54" r="2.4" fill="#5B8CFF">
+        <animate attributeName="opacity" values="0.45;1;0.45" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="76" cy="54" r="2.4" fill="#9B5EFF">
+        <animate attributeName="opacity" values="0.45;1;0.45" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="48" cy="72" r="2.4" fill="#9B5EFF">
+        <animate attributeName="opacity" values="0.45;1;0.45" dur="2.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="76" cy="72" r="2.4" fill="#5B8CFF">
+        <animate attributeName="opacity" values="0.45;1;0.45" dur="3.1s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Links -->
+      <g stroke="#00D9C0" stroke-width="1" stroke-opacity="0.55">
+        <line x1="62" y1="62" x2="48" y2="54">
+          <animate attributeName="stroke-opacity" values="0.25;0.85;0.25" dur="2.2s" repeatCount="indefinite"/>
+        </line>
+        <line x1="62" y1="62" x2="76" y2="54">
+          <animate attributeName="stroke-opacity" values="0.25;0.85;0.25" dur="2.6s" repeatCount="indefinite"/>
+        </line>
+        <line x1="62" y1="62" x2="48" y2="72">
+          <animate attributeName="stroke-opacity" values="0.25;0.85;0.25" dur="2.9s" repeatCount="indefinite"/>
+        </line>
+        <line x1="62" y1="62" x2="76" y2="72">
+          <animate attributeName="stroke-opacity" values="0.25;0.85;0.25" dur="3.3s" repeatCount="indefinite"/>
+        </line>
+      </g>
+    </g>
+
+    <!-- Title block -->
+    <g transform="translate(230, 88)">
+      <text x="0" y="0" font-family="ui-monospace, 'SF Mono', 'Fira Code', Consolas, monospace" font-size="12" letter-spacing="3.2" fill="#6272A4">
+        VRIL LABS · AGENT SKILL
+        <animate attributeName="fill" values="#6272A4;#00D9C0;#6272A4" dur="6s" repeatCount="indefinite"/>
+      </text>
+
+      <text x="0" y="46" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="-0.8" fill="url(#textShine)">
+        Portable Agent Memory
+      </text>
+
+      <text x="0" y="78" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" fill="#A7B4C9" opacity="0.95">
+        Project-local memories with markdown truth · SQLite + FTS5 ledger
+        <animate attributeName="opacity" values="0.75;1;0.75" dur="5s" repeatCount="indefinite"/>
+      </text>
+    </g>
+
+    <!-- Feature chips -->
+    <g font-family="ui-monospace, 'SF Mono', 'Fira Code', Consolas, monospace" font-size="11" letter-spacing="0.6">
+      <!-- chip 1 -->
+      <g transform="translate(230, 198)">
+        <rect width="148" height="32" rx="10" fill="url(#chipGrad)" stroke="#00D9C0" stroke-opacity="0.45"/>
+        <circle cx="18" cy="16" r="3.2" fill="#00D9C0">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="32" y="20" fill="#E8EDF5">memories/</text>
+      </g>
+      <!-- chip 2 -->
+      <g transform="translate(392, 198)">
+        <rect width="148" height="32" rx="10" fill="url(#chipGrad)" stroke="#5B8CFF" stroke-opacity="0.45"/>
+        <circle cx="18" cy="16" r="3.2" fill="#5B8CFF">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2.4s" repeatCount="indefinite"/>
+        </circle>
+        <text x="32" y="20" fill="#E8EDF5">.memsys-db</text>
+      </g>
+      <!-- chip 3 -->
+      <g transform="translate(554, 198)">
+        <rect width="132" height="32" rx="10" fill="url(#chipGrad)" stroke="#9B5EFF" stroke-opacity="0.45"/>
+        <circle cx="18" cy="16" r="3.2" fill="#9B5EFF">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2.8s" repeatCount="indefinite"/>
+        </circle>
+        <text x="32" y="20" fill="#E8EDF5">stdlib only</text>
+      </g>
+      <!-- chip 4 -->
+      <g transform="translate(700, 198)">
+        <rect width="168" height="32" rx="10" fill="url(#chipGrad)" stroke="#00D9C0" stroke-opacity="0.35"/>
+        <circle cx="18" cy="16" r="3.2" fill="#00D9C0">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="3.1s" repeatCount="indefinite"/>
+        </circle>
+        <text x="32" y="20" fill="#E8EDF5">schema v1.1</text>
+      </g>
+    </g>
+
+    <!-- Floating data ticks (right) -->
+    <g opacity="0.7" font-family="ui-monospace, 'SF Mono', Consolas, monospace" font-size="9" fill="#6272A4">
+      <text x="820" y="58">init ✓</text>
+      <text x="820" y="76">search ✓</text>
+      <text x="820" y="94">reindex ✓</text>
+      <text x="820" y="112">forget ✓</text>
+      <g>
+        <animate attributeName="opacity" values="0.35;0.85;0.35" dur="4.5s" repeatCount="indefinite"/>
+      </g>
+    </g>
+
+    <!-- Bottom accent line -->
+    <rect x="0" y="276" width="960" height="4" fill="url(#coreGrad)" opacity="0.85">
+      <animate attributeName="opacity" values="0.45;0.95;0.45" dur="4s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Outer frame -->
+  <rect x="0.75" y="0.75" width="958.5" height="278.5" rx="22" fill="none" stroke="#6272A4" stroke-opacity="0.28" stroke-width="1.2"/>
+  <rect x="0.75" y="0.75" width="958.5" height="278.5" rx="22" fill="none" stroke="#00D9C0" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="2 22" stroke-opacity="0.55">
+    <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1.6s" repeatCount="indefinite"/>
+  </rect>
+</svg>
