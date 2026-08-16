@@ -53,7 +53,7 @@ Design contract (from the skill itself):
 | --- | --- |
 | Markdown under `memories/` | **Source of truth** — human-readable prose |
 | `.memsys-db` | Regenerable **index, ledger, and search plane** — never outranks files |
-| `scripts/memory` → `references/memory_tool` | Deterministic Zone B CLI — JSON on stdout is truth |
+| `skills/memory-system/scripts/memory` → `references/memory_tool` | Deterministic Zone B CLI — JSON on stdout is truth |
 
 It does **not** claim exclusivity over host memory mechanisms. If the agent runtime already has memory, treat this as an additional file-based layer beside it.
 
@@ -72,7 +72,7 @@ It does **not** claim exclusivity over host memory mechanisms. If the agent runt
 - **Single hidden DB file** — `journal_mode=DELETE` only; no `-wal` / `-shm` sidecars (`validate` / `selftest` enforce this)
 - **Stdlib only** — Python 3.9+, no third-party packages; optional `sqlite-vec` can attach later for hybrid recall
 
-### Commands (`scripts/memory`)
+### Commands (`skills/memory-system/scripts/memory`)
 
 | Command | Purpose |
 | --- | --- |
@@ -169,23 +169,23 @@ The agent loads the skill when you say *remember*, *forget*, *persist a preferen
 ### Typical agent workflow
 
 ```bash
-scripts/memory --cwd . root
-scripts/memory --cwd . glob "user/**/*.md"
-scripts/memory --cwd . read user/MEMORY.md
-scripts/memory --cwd . search "edge proxy"
+skills/memory-system/scripts/memory --cwd . root
+skills/memory-system/scripts/memory --cwd . glob "user/**/*.md"
+skills/memory-system/scripts/memory --cwd . read user/MEMORY.md
+skills/memory-system/scripts/memory --cwd . search "edge proxy"
 
-scripts/memory classify --text "$PAYLOAD" --hint "$INTENT" --title "$TITLE"
-scripts/memory slug "$TITLE"
+skills/memory-system/scripts/memory classify --text "$PAYLOAD" --hint "$INTENT" --title "$TITLE"
+skills/memory-system/scripts/memory slug "$TITLE"
 
-scripts/memory --cwd . write user/<slug>.md --content-file "$TMP"
-scripts/memory --cwd . index-link --scope user --slug <slug> --filename <slug>.md --summary "$ONE_LINE"
-scripts/memory --cwd . read user/<slug>.md   # re-read is proof
+skills/memory-system/scripts/memory --cwd . write user/<slug>.md --content-file "$TMP"
+skills/memory-system/scripts/memory --cwd . index-link --scope user --slug <slug> --filename <slug>.md --summary "$ONE_LINE"
+skills/memory-system/scripts/memory --cwd . read user/<slug>.md   # re-read is proof
 
 # irreversible delete — confirm path must equal path
-scripts/memory --cwd . forget user/<slug>.md --confirm user/<slug>.md
+skills/memory-system/scripts/memory --cwd . forget user/<slug>.md --confirm user/<slug>.md
 
 # ledger drift? rebuild from markdown
-scripts/memory --cwd . reindex
+skills/memory-system/scripts/memory --cwd . reindex
 ```
 
 ---
@@ -287,7 +287,7 @@ Must print `"ok": true` and exit `0`. The suite asserts journal mode, single-fil
 
 1. Keep Zone B (`references/memory_tool`) deterministic — do not reformat or second-guess its JSON
 2. Markdown remains the only source of truth for prose
-3. Run `scripts/memory selftest` before proposing changes that touch the tool or ledger
+3. Run `skills/memory-system/scripts/memory selftest` before proposing changes that touch the tool or ledger
 4. Do not ship user rows, pre-filled DB binaries, WAL mode, or GUI/admin sidecars
 
 ---
