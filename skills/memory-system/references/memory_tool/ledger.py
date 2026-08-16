@@ -47,7 +47,12 @@ def init_db(project_root: Path) -> dict[str, Any]:
         conn.executescript(_SCHEMA_SQL)
         conn.commit()
         assert_single_file(path)
-        vec = vec_available(conn)
+        warnings: list[dict[str, Any]] = []
+        try:
+            vec = vec_available(conn)
+        except Exception as exc:
+            vec = False
+            warnings.append({"code": "sqlite_vec_unavailable", "message": str(exc)})
         if vec:
             conn.commit()
         return {
@@ -56,6 +61,7 @@ def init_db(project_root: Path) -> dict[str, Any]:
             "fts5": True,
             "sqlite_vec": vec,
             "journal_mode": "delete",
+            "warnings": warnings,
         }
     finally:
         conn.close()
@@ -95,6 +101,8 @@ def vec_available(conn: sqlite3.Connection | None = None) -> bool:
             return True
         except Exception:
             return False
+        finally:
+            conn.enable_load_extension(False)
     return True
 
 
@@ -220,6 +228,19 @@ def remove_entry(project_root: Path, rel: str) -> None:
         conn.close()
 
 
+def upsert_entry_from_path(project_root: Path, rel: str, text: str) -> None:
+    """Upsert `rel` into the ledger if `.memsys-db` exists; no-op otherwise."""
+    path = db_path(project_root)
+    if not path.is_file():
+        return
+    conn = _connect(path)
+    try:
+        upsert_entry(conn, rel, text)
+        conn.commit()
+    finally:
+        conn.close()
+
+
 def reindex(project_root: Path, store: Path) -> dict[str, Any]:
     path = require_db(project_root)
     conn = _connect(path)
@@ -247,7 +268,12 @@ def reindex(project_root: Path, store: Path) -> dict[str, Any]:
             ("reindex", "", "", core.utc_now()),
         )
         conn.commit()
-        vec = vec_available(conn)
+        vec_warnings: list[dict[str, Any]] = []
+        try:
+            vec = vec_available(conn)
+        except Exception as exc:
+            vec = False
+            vec_warnings.append({"code": "sqlite_vec_unavailable", "message": str(exc)})
         if vec:
             conn.commit()
         return {
@@ -255,6 +281,7 @@ def reindex(project_root: Path, store: Path) -> dict[str, Any]:
             "skipped_secrets": skipped_secrets,
             "db": str(path),
             "sqlite_vec": vec,
+            "warnings": vec_warnings,
         }
     finally:
         conn.close()

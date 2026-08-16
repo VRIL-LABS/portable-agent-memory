@@ -286,7 +286,7 @@ def validate_index(path: Path) -> list[dict[str, Any]]:
                 "max": INDEX_MAX_LINES,
             }
         )
-    if "secrets" in text.lower() and scan_secrets(text):
+    if scan_secrets(text):
         violations.append({"code": "index_secret", "path": path.name})
     if not text.lstrip().startswith("#"):
         violations.append({"code": "index_no_heading", "path": path.name})

@@ -186,13 +186,7 @@ def cmd_write(args: argparse.Namespace, started: float) -> int:
             _base("write", started, ok=False, error={"code": "verify_mismatch"}),
             EXIT_FAIL,
         )
-    if ledger.db_path(project).is_file():
-        conn = ledger._connect(ledger.db_path(project))
-        try:
-            ledger.upsert_entry(conn, rel, verify)
-            conn.commit()
-        finally:
-            conn.close()
+    ledger.upsert_entry_from_path(project, rel, verify)
     warnings = []
     if path.name == INDEX_NAME and rec["lines"] > core.INDEX_MAX_LINES:
         warnings.append(
@@ -248,13 +242,7 @@ def cmd_edit(args: argparse.Namespace, started: float) -> int:
             _base("edit", started, ok=False, error={"code": "verify_mismatch"}),
             EXIT_FAIL,
         )
-    if ledger.db_path(project).is_file():
-        conn = ledger._connect(ledger.db_path(project))
-        try:
-            ledger.upsert_entry(conn, rec["path"], verify)
-            conn.commit()
-        finally:
-            conn.close()
+    ledger.upsert_entry_from_path(project, rec["path"], verify)
     return _emit(_base("edit", started, ok=True, file=rec, replacements=original.count(args.old) if args.all else 1), EXIT_OK)
 
 
