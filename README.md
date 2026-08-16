@@ -151,7 +151,7 @@ memory-system/
 Set the path to the memory tool once. From this repo root use `skills/memory-system/scripts/memory`; after installing the skill use your installed path (e.g. `.agents/skills/memory-system/scripts/memory`).
 
 ```bash
-MEMORY=skills/memory-system/scripts/memory   # change if installed elsewhere
+MEMORY="skills/memory-system/scripts/memory"   # change if installed elsewhere
 
 # from a real project root (or pass --cwd / --root)
 "$MEMORY" --cwd . init
