@@ -193,13 +193,11 @@
 
     <!-- Floating data ticks (right) -->
     <g opacity="0.7" font-family="ui-monospace, 'SF Mono', Consolas, monospace" font-size="9" fill="#6272A4">
+      <animate attributeName="opacity" values="0.35;0.85;0.35" dur="4.5s" repeatCount="indefinite"/>
       <text x="820" y="58">init ✓</text>
       <text x="820" y="76">search ✓</text>
       <text x="820" y="94">reindex ✓</text>
       <text x="820" y="112">forget ✓</text>
-      <g>
-        <animate attributeName="opacity" values="0.35;0.85;0.35" dur="4.5s" repeatCount="indefinite"/>
-      </g>
     </g>
 
     <!-- Bottom accent line -->
