@@ -57,6 +57,10 @@ Design contract (from the skill itself):
 
 It does **not** claim exclusivity over host memory mechanisms. If the agent runtime already has memory, treat this as an additional file-based layer beside it.
 
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request.
+
 ---
 
 ## Features
