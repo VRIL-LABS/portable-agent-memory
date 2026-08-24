@@ -15,7 +15,7 @@
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-brightgreen.svg)](https://agentskills.io/specification)
 [![Stdlib only](https://img.shields.io/badge/deps-Python_stdlib-lightgrey.svg)](skills/memory-system/SKILL.md)
 
-<sub>// crafted for the agent community — funding keeps it maintained</sub>
+<sub>// crafted for the agentic AI community — funding keeps it maintained</sub>
 
 [![GitHub Sponsors](assets/donate/github-sponsors.svg)](https://github.com/sponsors/VrilLabs)
 [![Open Collective](assets/donate/open-collective.svg)](https://opencollective.com/vrillabs)
