@@ -316,3 +316,9 @@ If this skill saves you context-window thrash, consider funding maintenance:
 - [thanks.dev](https://thanks.dev/u/gh/vril-labs)
 
 Funding config: [`.github/FUNDING.yml`](.github/FUNDING.yml).
+
+---
+
+<div align="center">
+  <sub>Built by <strong><a href="https://vril.li" title="Visit the VRIL LABS Website">VRIL LABS</a></strong> · Ancient Knowledge · Future Technology</sub>
+</div>
