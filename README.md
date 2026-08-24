@@ -61,6 +61,10 @@ It does **not** claim exclusivity over host memory mechanisms. If the agent runt
 
 Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request.
 
+## Security
+
+If you believe you have found a security issue, please review [SECURITY.md](SECURITY.md) before reporting it. Please do not disclose vulnerabilities publicly; use the private reporting flow or the repository's configured security contact instead.
+
 ---
 
 ## Features
