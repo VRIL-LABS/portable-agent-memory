@@ -11,7 +11,7 @@ GitHub's official repository guidance for adding and using a security policy is 
 
 If you believe you have discovered a security issue in this repository, please do not open a public issue or discussion for it.
 
-Instead, use the repository's GitHub private vulnerability reporting flow if it is enabled in the repository's Security tab. If private reporting is not enabled, follow the maintainer-provided security contact in the repository or another secure, non-public channel designated for this project.
+Instead, use the repository's GitHub private vulnerability reporting flow if it is enabled in the repository's Security tab. If private reporting is not enabled, email the maintainers at security@vril-labs.com with the details below and include the subject line "Security vulnerability report".
 
 Please include as much detail as possible, such as:
 
